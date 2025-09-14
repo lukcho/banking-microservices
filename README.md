@@ -4,8 +4,6 @@ Sistema bancario implementado con arquitectura de microservicios usando Spring B
 ## 📋 Información del Repositorio
 - **Repositorio**: https://github.com/lukcho/banking-microservices
 - **Clonación**: `git clone https://github.com/lukcho/banking-microservices.git`
-- **Estado**: En desarrollo activo
-- **Última actualización**: Septiembre 2024
 
 ## Arquitectura
 El sistema está compuesto por los siguientes microservicios:
@@ -29,37 +27,7 @@ El sistema está compuesto por los siguientes microservicios:
 - **Spring Cloud Gateway**
 
 ## Funcionalidades Implementadas
-### F1: CRUDs Completos
-- **Clientes**: Crear, leer, actualizar y eliminar clientes
-- **Cuentas**: Gestión completa de cuentas bancarias
-- **Movimientos**: Registro de transacciones bancarias
-
-### F2: Registro de Movimientos
-- Soporte para depósitos y retiros
-- Actualización automática del saldo disponible
-- Registro completo de transacciones
-
-### F3: Validación de Saldo
-- Validación de saldo disponible antes de retiros
-- Mensaje de error "Saldo no disponible" cuando no hay fondos suficientes
-
-### F4: Reportes de Estado de Cuenta
-- Generación de reportes por rango de fechas y cliente
-- Información detallada de cuentas y movimientos
-- Formato JSON estructurado
-
-### F5: Pruebas Unitarias
-- Pruebas unitarias para la entidad Cliente
-- Cobertura de casos de éxito y error
-
-### F6: Pruebas de Integración
-- Pruebas de integración para el flujo completo de movimientos
-- Validación de reglas de negocio
-
-### F7: Despliegue en Docker
-- Contenedores Docker para todos los servicios
-- Docker Compose para orquestación
-- Scripts de construcción y despliegue automatizados
+### F1,F2, F3. F4. F5, F6. F7
 
 ## Estructura del Proyecto
 ```
@@ -74,52 +42,10 @@ banking-microservices/
 └── Banking_Microservices.postman_collection.json  # Colección de Postman
 ```
 
-## Entidades del Dominio
-### Persona (Clase Base)
-- `id`: Identificador único
-- `nombre`: Nombre completo
-- `genero`: M, F, O
-- `edad`: Edad en años
-- `identificacion`: Número de identificación único
-- `direccion`: Dirección de residencia
-- `telefono`: Número de teléfono
-
-### Cliente (Hereda de Persona)
-- `clienteId`: Identificador único del cliente
-- `contrasena`: Contraseña de acceso
-- `estado`: Estado activo/inactivo
-
-### Cuenta
-- `cuentaId`: Identificador único
-- `numeroCuenta`: Número de cuenta único
-- `tipoCuenta`: Ahorros o Corriente
-- `saldoInicial`: Saldo inicial de la cuenta
-- `estado`: Estado activo/inactivo
-- `clienteId`: Referencia al cliente propietario
-
-### Movimiento
-- `movimientoId`: Identificador único
-- `fecha`: Fecha y hora del movimiento
-- `tipoMovimiento`: Depósito o Retiro
-- `valor`: Cantidad del movimiento
-- `saldo`: Saldo resultante después del movimiento
-- `cuentaId`: Referencia a la cuenta
-
 ## Patrones Implementados
-### Repositorio
-- Separación de la lógica de acceso a datos
-- Interfaces específicas para cada entidad
-- Consultas personalizadas con `@Query`
-
-### Capa de Servicio
-- Lógica de negocio encapsulada en servicios
-- Transacciones manejadas con `@Transactional`
-- Validaciones de reglas de negocio
-
-### DTO
-- Transferencia de datos entre capas
-- DTOs específicos para reportes
-- Separación de modelos de dominio y presentación
+- Repositorio
+- Capa de Servicio
+- DTO
 
 ## Endpoints de la API
 ### Clientes (`/api/clientes`)
@@ -157,8 +83,6 @@ banking-microservices/
 - Git
 
 ### Instalación de Docker (macOS)
-Si no tienes Docker instalado, sigue estos pasos:
-
 #### Opción 1: Docker Desktop (Recomendado)
 1. Ve a https://www.docker.com/products/docker-desktop/
 2. Descarga Docker Desktop para Mac
@@ -243,8 +167,6 @@ chmod +x build-and-deploy.sh
    chmod +x build-and-deploy.sh
    ./build-and-deploy.sh
    ```
-2. **Verificar que todos los servicios estén funcionando**
-3. **Probar los endpoints con Postman**
 
 ## Pruebas
 ### Ejecutar Pruebas Unitarias
