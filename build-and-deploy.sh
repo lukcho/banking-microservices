@@ -44,10 +44,10 @@ cd ..
 echo "2. Iniciando servicios con Docker Compose..."
 
 # Detener contenedores existentes
-docker-compose down
+docker compose down
 
 # Iniciar servicios
-docker-compose up -d
+docker compose up -d
 
 echo "3. Esperando a que los servicios estén listos..."
 
@@ -98,4 +98,4 @@ echo "- Kafka: localhost:9092"
 echo ""
 echo "Para probar los endpoints, usa la colección de Postman: Banking_Microservices.postman_collection.json"
 echo ""
-echo "Para detener los servicios: docker-compose down"
+echo "Para detener los servicios: docker compose down"

@@ -1,9 +1,13 @@
 # Banking Microservices
-
 Sistema bancario implementado con arquitectura de microservicios usando Spring Boot, JPA, Docker y comunicación asíncrona.
 
-## Arquitectura
+## 📋 Información del Repositorio
+- **Repositorio**: https://github.com/lukcho/banking-microservices
+- **Clonación**: `git clone https://github.com/lukcho/banking-microservices.git`
+- **Estado**: En desarrollo activo
+- **Última actualización**: Septiembre 2024
 
+## Arquitectura
 El sistema está compuesto por los siguientes microservicios:
 
 1. **Eureka Server** (Puerto 8761) - Servidor de descubrimiento de servicios
@@ -14,7 +18,6 @@ El sistema está compuesto por los siguientes microservicios:
 6. **Kafka** (Puerto 9092) - Sistema de mensajería asíncrona
 
 ## Tecnologías Utilizadas
-
 - **Java 17**
 - **Spring Boot 3.2.0**
 - **Spring Cloud 2023.0.0**
@@ -26,7 +29,6 @@ El sistema está compuesto por los siguientes microservicios:
 - **Spring Cloud Gateway**
 
 ## Funcionalidades Implementadas
-
 ### F1: CRUDs Completos
 - **Clientes**: Crear, leer, actualizar y eliminar clientes
 - **Cuentas**: Gestión completa de cuentas bancarias
@@ -60,7 +62,6 @@ El sistema está compuesto por los siguientes microservicios:
 - Scripts de construcción y despliegue automatizados
 
 ## Estructura del Proyecto
-
 ```
 banking-microservices/
 ├── eureka-server/                 # Servidor de descubrimiento
@@ -74,7 +75,6 @@ banking-microservices/
 ```
 
 ## Entidades del Dominio
-
 ### Persona (Clase Base)
 - `id`: Identificador único
 - `nombre`: Nombre completo
@@ -106,13 +106,12 @@ banking-microservices/
 - `cuentaId`: Referencia a la cuenta
 
 ## Patrones Implementados
-
-### Repository
+### Repositorio
 - Separación de la lógica de acceso a datos
 - Interfaces específicas para cada entidad
 - Consultas personalizadas con `@Query`
 
-### Service Layer
+### Capa de Servicio
 - Lógica de negocio encapsulada en servicios
 - Transacciones manejadas con `@Transactional`
 - Validaciones de reglas de negocio
@@ -123,7 +122,6 @@ banking-microservices/
 - Separación de modelos de dominio y presentación
 
 ## Endpoints de la API
-
 ### Clientes (`/api/clientes`)
 - `GET /api/clientes` - Obtener todos los clientes
 - `GET /api/clientes/{id}` - Obtener cliente por ID
@@ -152,7 +150,6 @@ banking-microservices/
 - `GET /api/reportes?clienteId={id}&fechaInicio={fecha}&fechaFin={fecha}` - Estado de cuenta
 
 ## Instalación y Despliegue
-
 ### Prerrequisitos
 - Java 17 o superior
 - Maven 3.6 o superior
@@ -160,7 +157,6 @@ banking-microservices/
 - Git
 
 ### Instalación de Docker (macOS)
-
 Si no tienes Docker instalado, sigue estos pasos:
 
 #### Opción 1: Docker Desktop (Recomendado)
@@ -186,10 +182,9 @@ open /Applications/Docker.app
 ```
 
 ### Pasos de Instalación
-
 1. **Clonar el repositorio**
 ```bash
-git clone <repository-url>
+git clone https://github.com/lukcho/banking-microservices.git
 cd banking-microservices
 ```
 
@@ -210,61 +205,48 @@ chmod +x build-and-deploy.sh
 mvn clean package -DskipTests
 
 # Construir imágenes Docker
-docker-compose build
+docker compose build
 
 # Iniciar servicios
-docker-compose up -d
-```
-
-### Solución de Problemas
-
-#### Error: "EnableEurekaClient cannot be resolved"
-Este error se debe a que en las versiones modernas de Spring Cloud, la anotación `@EnableEurekaClient` es redundante. Los servicios se auto-registran automáticamente con Eureka cuando detectan la dependencia en el classpath.
-
-**Solución**: Eliminar las siguientes líneas de todos los archivos `*Application.java`:
-```java
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
-
-@EnableEurekaClient
+docker compose up -d
 ```
 
 ### Verificación del Despliegue
-
 1. **Eureka Server**: http://localhost:8761
 2. **API Gateway**: http://localhost:8080
 3. **Cliente-Persona Service**: http://localhost:8081
 4. **Cuenta-Movimiento Service**: http://localhost:8082
 
-### Estado Actual del Proyecto
 
-✅ **Completado:**
-- Arquitectura de microservicios implementada
-- Servicios de descubrimiento (Eureka)
-- API Gateway configurado
-- CRUDs completos para todas las entidades
-- Validaciones de negocio implementadas
-- Pruebas unitarias y de integración
-- Configuración Docker completa
-- Scripts de despliegue automatizados
+### Verificación Rápida
+Antes de desplegar, verifica que todo esté listo:
 
-⚠️ **Pendiente:**
-- Resolver errores de compilación Maven
-- Verificar funcionamiento completo de todos los servicios
-- Pruebas end-to-end del sistema completo
+```bash
+# 1. Verificar que Docker esté ejecutándose
+docker --version
+docker info
+
+# 2. Verificar que Maven compile correctamente
+mvn clean compile -q
+
+# 3. Verificar que el empaquetado funcione
+mvn clean package -DskipTests -q
+
+# 4. Si todo está bien, desplegar
+chmod +x build-and-deploy.sh
+./build-and-deploy.sh
+```
 
 ### Próximos Pasos
-
-1. **Iniciar Docker Desktop** (si no está ejecutándose)
-2. **Ejecutar el script de despliegue**:
+1. **Ejecutar el script de despliegue**:
    ```bash
    chmod +x build-and-deploy.sh
    ./build-and-deploy.sh
    ```
-3. **Verificar que todos los servicios estén funcionando**
-4. **Probar los endpoints con Postman**
+2. **Verificar que todos los servicios estén funcionando**
+3. **Probar los endpoints con Postman**
 
 ## Pruebas
-
 ### Ejecutar Pruebas Unitarias
 ```bash
 # Cliente-Persona Service
